@@ -125,6 +125,18 @@ Use this section to document the experiments you ran. For example:
 - What happened when you added tempo or valence to the score
 - How did your system behave for different types of users
 
+### Profile: Happy Pop Fan
+![Happy Pop Fan recommendations](assests/happyPopTest.png)
+
+### Profile: Chill Lofi Study
+![Chill Lofi Study recommendations](assests/chillLofiTest.png)
+
+### Profile: High Energy Rock
+![High Energy Rock recommendations](assests/highEnergyRock.png)
+
+### All Tests Passing
+![pytest 15 passed](assests/pytestResults1.png)
+
 ---
 
 ## Limitations and Risks
