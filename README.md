@@ -21,13 +21,35 @@ Explain your design in plain language.
 
 Some prompts to answer:
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
+- What features does each `Song` use in your system 
+  - For example: genre, mood, energy, tempo 
+    the data has id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness
+      genre, mood, energy, and artist are the most important features in my system
+
 - What information does your `UserProfile` store
+  - For example: preferred genre, mood, energy level, favorite artists
+    I will store the user's preferred genre, mood, energy level, and favorite artists in the UserProfile as a score for each feature, 
+    and then use those scores to compute a weighted average score for each song in the catalog.
+    user profile will be stored in the data folder as a json file, and will be updated each time the user runs the recommender, so it can learn over time.
+
 - How does your `Recommender` compute a score for each song
+    The recommender computes a score for each song by comparing the song's features to the user's preferences.
+    Read more below:
 - How do you choose which songs to recommend
+    I will recommend the top 3-10 songs with the highest scores.
+    Maybe even impliment collabortive filetering in the future, but for now I will just use content based filtering.
+    genre is the most important factor, followed by mood, energy, and artist. 
+    The model calculates a score for each song based on how well it matches the user's preferences.
+    each feature has a score from 0 to 1, and the final score is a weighted average of these feature scores.
+    The weights are: genre (0.4), mood (0.3), energy (0.2), artist (0.1).
+    If a user has a strong preference for a specific genre, mood, artist, or energy level, songs in that category will score higher (higher weight).
+    add in a random factor to introduce some variability in the recommendations, so the same user might get slightly different suggestions each time they run the recommender. Increase its weight if the user selects a random song instead of a recommended one.
+
 
 You can include a simple diagram or bullet list if helpful.
+  - genre first, then mood, then energy, then preferred artist
+  - see patterns in each of the 4, if a user constantly prefers a certain genre, then that will be weighted more heavily in the scoring logic, and so on for the other features.
+  - have ai generate more test data as needed to see these patterns more clearly.
 
 ---
 
