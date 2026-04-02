@@ -100,7 +100,7 @@ Use this section to document the experiments you ran. For example:
 
 ## Limitations and Risks
 
-Summarize some limitations of your recommender.
+Summarize some limitations of your recommender. 
 
 Examples:
 
@@ -109,7 +109,7 @@ Examples:
 - It might over favor one genre or mood
 
 You will go deeper on this in your model card.
-
+  Low starting data and single user based.
 ---
 
 ## Reflection
@@ -134,8 +134,9 @@ Combines reflection and model card framing from the Module 3 guidance. :contentR
 # 🎧 Model Card - Music Recommender Simulation
 
 ## 1. Model Name
+>> MusicialMatchMaker (MMM)
 
-Give your recommender a name, for example:
+Give your recommender a name, for example: 
 
 > VibeFinder 1.0
 
@@ -145,6 +146,7 @@ Give your recommender a name, for example:
 
 - What is this system trying to do
 - Who is it for
+recommend 3-10 top songs based on single user preferences, and learn over time based on user input.
 
 Example:
 
@@ -161,7 +163,9 @@ Describe your scoring logic in plain language.
 - How does it turn those into a number
 
 Try to avoid code in this section, treat it like an explanation to a non programmer.
-
+ Takes 4 categories to score and looks for patterns in the user's preferences, then uses those patterns to score each song based on how well it matches the user's preferences in those categories.
+ Also, added a random factor to introduce some variability in the recommendations, so the same user might get slightly different suggestions each time they run the recommender. 
+ Increase its weight if the user selects a random song instead of a recommended one. 
 ---
 
 ## 4. Data
@@ -171,7 +175,7 @@ Describe your dataset.
 - How many songs are in `data/songs.csv`
 - Did you add or remove any songs
 - What kinds of genres or moods are represented
-- Whose taste does this data mostly reflect
+- Whose taste does this data mostly reflect: fast/pop vs slow/chill
 
 ---
 
@@ -188,8 +192,8 @@ You can think about:
 
 ## 6. Limitations and Bias
 
-Where does your recommender struggle
-
+Where does your recommender struggle 
+ limited data and single user based, so it may not be able to capture the full range of musical tastes or preferences.
 Some prompts:
 - Does it ignore some genres or moods
 - Does it treat all users as if they have the same taste shape
@@ -214,6 +218,7 @@ You do not need a numeric metric, but if you used one, explain what it measures.
 ## 8. Future Work
 
 If you had more time, how would you improve this recommender
+ make it multi user and impliment collaborative filtering, so it can learn from multiple users and make recommendations based on the preferences of similar users.
 
 Examples:
 
