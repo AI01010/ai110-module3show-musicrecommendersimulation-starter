@@ -49,3 +49,53 @@ id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness
 48,Retrograde,Nova Glyph,synthwave,nostalgic,0.72,114,0.58,0.76,0.18
 49,Late Orbit,Orbit Bloom,ambient,melancholic,0.22,55,0.35,0.35,0.95
 50,Dawn Ritual,Orbit Bloom,ambient,focused,0.32,65,0.62,0.40,0.91
+51,Fading Photograph,Velvet Echo,pop,nostalgic,0.68,112,0.62,0.74,0.30
+52,Neon Heartbreak,Velvet Echo,pop,sad,0.72,116,0.38,0.76,0.22
+53,Summer Static,Indigo Parade,pop,euphoric,0.89,128,0.86,0.88,0.12
+54,Close to You,Jade Monroe,pop,romantic,0.58,102,0.82,0.70,0.45
+55,City Glow,Max Pulse,pop,moody,0.74,114,0.50,0.78,0.20
+56,Rain Tape Vol.2,Mint Leaf,lofi,relaxed,0.38,74,0.64,0.56,0.82
+57,3am Study Hall,Mint Leaf,lofi,focused,0.36,70,0.52,0.54,0.85
+58,Dusty Hallway,Paper Lanterns,lofi,nostalgic,0.44,82,0.58,0.60,0.80
+59,Burning the Map,Voltline,rock,confident,0.86,148,0.60,0.74,0.08
+60,Rust and Bone,Iron Hymn,rock,melancholic,0.70,118,0.36,0.66,0.25
+61,Echo Chamber,Pale Current,rock,moody,0.75,126,0.44,0.70,0.18
+62,Paper Walls,Telescope,indie rock,sad,0.55,104,0.38,0.62,0.52
+63,Broke & Beautiful,Telescope,indie rock,euphoric,0.78,130,0.74,0.72,0.28
+64,Velvet Underground,Pale Current,indie rock,moody,0.64,112,0.46,0.65,0.38
+65,Candy Clouds,Hollow Fig,indie pop,happy,0.80,122,0.86,0.84,0.24
+66,Golden Static,Hollow Fig,indie pop,nostalgic,0.65,108,0.70,0.74,0.40
+67,Slow Burn Summer,Indigo Parade,indie pop,romantic,0.62,100,0.78,0.72,0.48
+68,Pressure Point,Concrete Roots,hip-hop,aggressive,0.88,98,0.45,0.86,0.06
+69,Long Way Home,Hollow Lane,hip-hop,nostalgic,0.58,85,0.55,0.65,0.38
+70,Wavelength,Nova Glyph,hip-hop,confident,0.82,102,0.70,0.84,0.10
+71,Blue Corridor,Slow Stereo,jazz,moody,0.45,88,0.48,0.58,0.84
+72,Midnight Standard,Blue Ember,jazz,romantic,0.40,82,0.74,0.52,0.88
+73,Uptown Swing,Swing Society,jazz,happy,0.68,132,0.84,0.76,0.72
+74,Minor Keys Only,Blue Ember,jazz,sad,0.32,72,0.28,0.44,0.91
+75,Silk & Rain,Sable Jay,r&b,melancholic,0.48,84,0.42,0.62,0.58
+76,Gravity Pull,Jade Monroe,r&b,romantic,0.65,98,0.80,0.76,0.36
+77,Voltage Peak,Zap Collective,edm,euphoric,0.96,132,0.82,0.97,0.02
+78,Deep Signal,Driftwave,edm,focused,0.78,122,0.55,0.86,0.10
+79,Whiskey & Stars,Dusty Rhodes,country,nostalgic,0.52,100,0.72,0.65,0.76
+80,Open Plains,Westwind,country,chill,0.38,88,0.66,0.54,0.84
+81,Winter Song,Fern Hollow,folk,melancholic,0.28,70,0.38,0.42,0.93
+82,Campfire Circle,Cobblestone,folk,happy,0.52,98,0.82,0.64,0.78
+83,Signal Drift,Orbit Bloom,ambient,focused,0.25,58,0.55,0.38,0.94
+84,Hollow Space,Circuit Fauna,ambient,melancholic,0.20,50,0.30,0.28,0.97
+85,Blade Run,Neon Echo,synthwave,intense,0.88,126,0.52,0.86,0.08
+86,Pastel City,Nova Glyph,synthwave,romantic,0.68,106,0.78,0.80,0.22
+87,Nocturne No. 5,Clara Voss,classical,romantic,0.22,60,0.68,0.24,0.99
+88,Island Morning,Reef Tones,reggae,happy,0.65,80,0.88,0.78,0.60
+89,Easy Ride,Reef Tones,reggae,chill,0.50,72,0.76,0.70,0.72
+90,Stand Firm,Island Pulse,reggae,confident,0.72,86,0.74,0.80,0.52
+91,Fracture Point,Iron Cross,metal,aggressive,0.98,175,0.28,0.70,0.04
+92,Cold Dominion,Void Hammer,metal,intense,0.96,168,0.32,0.68,0.05
+93,Rise from Ash,Iron Cross,metal,euphoric,0.94,160,0.55,0.72,0.06
+94,Slow Burn,Jade Monroe,soul,romantic,0.52,88,0.84,0.66,0.68
+95,River Deep,Marla Fenn,soul,sad,0.45,78,0.42,0.60,0.74
+96,Testify,Brass & Soul,soul,euphoric,0.78,112,0.88,0.80,0.38
+97,Fuego Lento,Latin Groove Collective,latin,romantic,0.75,100,0.84,0.88,0.32
+98,Calor de Verano,Rio Spark,latin,happy,0.85,116,0.90,0.92,0.18
+99,Tormenta,Rio Spark,latin,intense,0.90,130,0.62,0.88,0.10
+100,Electric Bossa,Swing Society,jazz-fusion,relaxed,0.58,96,0.72,0.70,0.62

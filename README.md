@@ -51,6 +51,35 @@ You can include a simple diagram or bullet list if helpful.
   - see patterns in each of the 4, if a user constantly prefers a certain genre, then that will be weighted more heavily in the scoring logic, and so on for the other features.
   - have ai generate more test data as needed to see these patterns more clearly.
 
+### Algorithm Recipe (Finalized)
+
+scoring formula per song:
+- genre match: `genre_weights[song.genre]` × 0.40
+- mood match: `mood_weights[song.mood]` × 0.30
+- energy similarity: `1.0 - abs(song.energy - target_energy)` × 0.20
+- artist bonus: normalized preferred artist count × 0.10
+- random jitter: `random.uniform(0, 0.15)` × random_factor_weight
+
+final score = weighted sum of all 5 components. sort all 50 songs descending, return top K (default 5).
+
+after the user picks or skips, the profile updates: genre/mood/artist weights shift toward what they chose, energy target recalculates as a rolling average. if the user keeps skipping recs and picking random songs, the random_factor_weight bumps up to introduce more variety.
+
+### Data Flow
+
+```mermaid
+flowchart TD
+    A[User Profile\ngenre weights, mood weights\nenergy target, artist counts] --> C[Score Each Song]
+    B[songs.csv\n50 songs] --> C
+    C --> D{Per song:\ngenre score + mood score\n+ energy score + artist score\n+ random jitter}
+    D --> E[Sort all songs by\nfinal score descending]
+    E --> F[Return Top K\nRecommendations]
+    F --> G{User picks or skips?}
+    G -->|picked| H[Shift profile weights up\nfor that song's features]
+    G -->|skipped| I[Shift weights down\nboost random_factor_weight]
+    H --> A
+    I --> A
+```
+
 ---
 
 ## Getting Started
@@ -110,6 +139,11 @@ Examples:
 
 You will go deeper on this in your model card.
   Low starting data and single user based.
+- genre weight is 0.40 which is the strongest factor — if a user likes one pop song, pop will keep dominating future recs even if a rock song wouldve been a better mood match. classic filter bubble problem.
+- energy scoring averages liked songs, so a user who likes both really high and really low energy songs will get stuck getting mid-energy recs that dont nail either vibe.
+- no penalty for recommending the same artist back to back, so if Neon Echo scores well once it'll probably keep showing up every run.
+- the catalog is still small (50 songs) so underrepresented genres like classical or folk might never surface even if the user would actually like them.
+
 ---
 
 ## Reflection
