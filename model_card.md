@@ -48,10 +48,10 @@ Describe the dataset the model uses.
 
 Prompts:  
 
-- How many songs are in the catalog  10
-- What genres or moods are represented genre: pop, rock, hip-hop, jazz, classical. moods: happy, sad, energetic, calm. energy: low, medium, high. artists: 10 different artists with varying popularity and styles. 
-- Did you add or remove data  
-- Are there parts of musical taste missing in the dataset  idk? 
+- How many songs are in the catalog: Started with 10, expanded to 100.
+- What genres or moods are represented: Genres include pop, rock, hip-hop, jazz, classical, r&b, edm, country, folk, metal, soul, latin, reggae, synthwave, lofi, ambient, indie pop, indie rock, and jazz-fusion. Moods include happy, sad, intense, chill, focused, relaxed, moody, romantic, nostalgic, melancholic, confident, euphoric, and aggressive.
+- Did I add or remove data: Added 90 songs. The original 10 were not enough to test anything meaningful across different user types.
+- Are there parts of musical taste missing: Quite a bit actually. No lyric themes, no release era, no language tags, no sub-genre detail. Also no popularity score, so a viral hit and an obscure track are treated the same.
 
 ---
 
@@ -78,6 +78,12 @@ Prompts:
 - Cases where the system overfits to one preference  
 - Ways the scoring might unintentionally favor some users  
 
+- The genre weight (0.40) is the strongest factor. A user who likes one pop song will keep getting pop recs even when a different genre matches their mood better. Classic filter bubble.
+- Conflicting preferences break the scoring. A "sad high energy" user gets a low-energy sad song at #1 because the mood match (0.30) overrides the energy gap. The weights have no way to handle contradictions.
+- Niche genres like jazz-fusion only have 1 song in the catalog, so after #1 the system just falls back to mood-matching across completely unrelated genres.
+- No artist diversity penalty. If one artist has multiple high-scoring songs they can dominate the entire top 5.
+- Energy scoring uses a single target value. Users who like both very high and very low energy music get stuck with mid-energy recs that don't actually fit either preference.
+
 ---
 
 ## 7. Evaluation  
@@ -92,6 +98,13 @@ Prompts:
 - Any simple tests or comparisons you ran  
 
 No need for numeric metrics unless you created some.
+
+Tested 6 profiles total: 3 normal (Happy Pop Fan, Chill Lofi Study, High Energy Rock) and 3 adversarial (Sad High Energy, Acoustic Soul Night, Genre Wildcard).
+
+The normal profiles all behaved as expected. A genre and mood double match scored around 0.92 and landed at #1. Spots 2-5 were all same-genre songs scoring around 0.60.
+The adversarial profiles showed some real problems. Sad High Energy was the most surprising: a low-energy sad hip-hop song ranked #1 even though the target energy was 0.90. The mood match just overrode the energy gap. Genre Wildcard had a big score cliff: #1 was 0.95, but #2 dropped to 0.51 because there was only one song in that genre.
+Also ran a weight shift experiment: halved genre weight (0.40 to 0.20) and doubled energy weight (0.20 to 0.40). The #1 result still didn't change. Weights alone don't seem to fix the filter bubble issue.
+Wrote 39 unit tests on score_song, recommend_songs, load_songs, custom weight params, edge cases, and the OOP Recommender class. All passing.
 
 ---
 

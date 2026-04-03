@@ -96,33 +96,36 @@ def load_songs(csv_path: str) -> List[Dict]:
     return songs
 
 
-def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, str]:
+def score_song(user_prefs: Dict, song: Dict,
+               w_genre: float = 0.40, w_mood: float = 0.30,
+               w_energy: float = 0.20, w_artist: float = 0.10) -> Tuple[float, str]:
     """
     Score a single song dict against user_prefs dict.
     user_prefs keys: genre, mood, energy, artist (optional).
     Returns (score, reasons_string).
-    Weights: genre 0.40, mood 0.30, energy 0.20, artist 0.10, random jitter up to 0.05.
+    Default weights: genre 0.40, mood 0.30, energy 0.20, artist 0.10, random jitter up to 0.05.
+    Pass custom w_* args to run weight-shift experiments.
     """
     score = 0.0
     reasons = []
 
     if song["genre"] == user_prefs.get("genre"):
-        score += 0.40
-        reasons.append(f"genre match: {song['genre']} (+0.40)")
+        score += w_genre
+        reasons.append(f"genre match: {song['genre']} (+{w_genre})")
 
     if song["mood"] == user_prefs.get("mood"):
-        score += 0.30
-        reasons.append(f"mood match: {song['mood']} (+0.30)")
+        score += w_mood
+        reasons.append(f"mood match: {song['mood']} (+{w_mood})")
 
     target_energy = user_prefs.get("energy", 0.5)
     energy_sim = 1.0 - abs(song["energy"] - target_energy)
-    energy_contrib = round(energy_sim * 0.20, 4)
+    energy_contrib = round(energy_sim * w_energy, 4)
     score += energy_contrib
     reasons.append(f"energy {song['energy']:.2f} vs target {target_energy:.2f} (+{energy_contrib:.2f})")
 
     if user_prefs.get("artist") and song["artist"] == user_prefs["artist"]:
-        score += 0.10
-        reasons.append(f"favorite artist: {song['artist']} (+0.10)")
+        score += w_artist
+        reasons.append(f"favorite artist: {song['artist']} (+{w_artist})")
 
     jitter = random.uniform(0, 0.05)
     score = round(score + jitter, 4)

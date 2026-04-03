@@ -60,9 +60,9 @@ scoring formula per song:
 - artist bonus: normalized preferred artist count × 0.10
 - random jitter: `random.uniform(0, 0.15)` × random_factor_weight
 
-final score = weighted sum of all 5 components. sort all 50 songs descending, return top K (default 5).
+Final score = weighted sum of all 5 components. All 100 songs get scored, then sorted descending, and the top K are returned (default 5).
 
-after the user picks or skips, the profile updates: genre/mood/artist weights shift toward what they chose, energy target recalculates as a rolling average. if the user keeps skipping recs and picking random songs, the random_factor_weight bumps up to introduce more variety.
+After each pick or skip the profile updates. Genre, mood, and artist weights shift toward whatever the user chose, and the energy target recalculates as a rolling average. If the user keeps skipping recs and picking random songs instead, the random_factor_weight increases so the next batch introduces more variety.
 
 ### Data Flow
 
@@ -151,10 +151,10 @@ Examples:
 
 You will go deeper on this in your model card.
   Low starting data and single user based.
-- genre weight is 0.40 which is the strongest factor — if a user likes one pop song, pop will keep dominating future recs even if a rock song wouldve been a better mood match. classic filter bubble problem.
-- energy scoring averages liked songs, so a user who likes both really high and really low energy songs will get stuck getting mid-energy recs that dont nail either vibe.
-- no penalty for recommending the same artist back to back, so if Neon Echo scores well once it'll probably keep showing up every run.
-- the catalog is still small (50 songs) so underrepresented genres like classical or folk might never surface even if the user would actually like them.
+- Genre weight is 0.40, which is the strongest factor. Like one pop song and pop keeps showing up, even if a rock song would have matched the mood better. Filter bubble.
+- Energy is just a single target value. If I like both really high and really low energy music, I'll get stuck with mid-energy recs that don't actually fit either preference.
+- No artist diversity penalty, so if Neon Echo scores well once it will probably keep showing up every run.
+- The catalog has 100 songs now but some genres still only have 1-3 entries. Underrepresented genres might never surface even if the user would actually like them.
 
 ---
 
