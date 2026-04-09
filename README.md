@@ -169,6 +169,10 @@ Write 1 to 2 paragraphs here about what you learned:
 - about how recommenders turn data into predictions
 - about where bias or unfairness could show up in systems like this
 
+Building this showed me that a recommender is basically just a scoring machine. It takes whatever data you give it, runs it through a formula, and produces a ranked list. There is no actual understanding of music happening. The system doesn't know that a jazz song and a lofi song both feel good for studying, or that metal and rock share a lot of sonic DNA. It only knows the labels you put on things. That made me realize how much the quality of the output depends on the quality of the data and the weights, not on any kind of intelligence in the algorithm itself.
+
+The bias part was more interesting than I expected. The filter bubble showed up almost immediately once I started testing. A user who likes one pop song gets five pop songs back, even if a folk or r&b track would have matched their mood just as well. That's the same thing that happens on Spotify or YouTube, just at a much bigger scale. The system isn't being unfair on purpose, it's just optimizing for the features you told it to care about. That's the problem. If the features or weights are even slightly off, the recommendations quietly push users toward a narrower and narrower slice of what's out there.
+
 
 ---
 

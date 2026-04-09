@@ -2,8 +2,7 @@
 
 ## 1. Model Name  
 
-Give your model a short, descriptive name.  
-Example: **VibeFinder 1.0**  
+**MusicialMatchMaker (MMM)**  
 
 ---
 
@@ -65,6 +64,13 @@ Prompts:
 - Any patterns you think your scoring captures correctly  
 - Cases where the recommendations matched your intuition  
 
+Works best for users with a clear and consistent taste. If someone always listens to the same genre and mood, the top 5 results are usually very accurate and feel right.
+The scoring is fully transparent, so every recommendation comes with a reason showing which features matched and how much each contributed. That's something most you dont see in real apps.
+Content-based filtering works well here because it doesn't need data from other users. A brand new user with just a genre and mood preference can still get decent results right away.
+For profiles where genre and mood both match a song, the #1 result is usually clearly ahead of everything else, which makes the ranking feel trustworthy for those cases.
+The energy scoring also works well when a user has a narrow energy preference. 
+Ex: A high-energy user reliably gets high-energy songs in the top results.
+
 ---
 
 ## 6. Limitations and Bias 
@@ -119,6 +125,12 @@ Prompts:
 - Improving diversity among the top results  
 - Handling more complex user tastes  
 
+Make it multi-user and implement collaborative filtering, so it can learn from multiple users and make recommendations based on the preferences of similar users.
+Add an artist diversity penalty so the same artist can't take up the whole top 5.
+Support energy ranges instead of a single target value, so users who like both high and low energy music actually get variety instead of mid-energy defaults.
+Normalize scores so they always stay between 0 and 1. Right now a full match with an artist bonus can go above 1.0, which makes scores harder to compare.
+Add more features to the dataset like release decade, tempo ranges, and sub-genre tags to give the scoring more to work with.
+
 ---
 
 ## 9. Personal Reflection  
@@ -130,3 +142,10 @@ Prompts:
 - What you learned about recommender systems  
 - Something unexpected or interesting you discovered  
 - How this changed the way you think about music recommendation apps  
+
+Building this made me realize how much a recommender is just math pretending to understand taste. 
+The weights decide everything, and picking the wrong ones means the system sounds confident while giving bad results.
+The most unexpected thing was how hard it is to handle conflicting preferences. I thought doubling the energy weight would fix the sad high energy problem, but the mood bonus was still strong enough to override it. 
+That showed me the weights are not really independent specifically in reality, they interact with each other in ways that are hard to predict.
+Human judgment still matters a lot here. 
+No amount of weighting logic can replace someone just knowing that a sad rainy day playlist should not include a high-energy gym track even if the genre matches.
